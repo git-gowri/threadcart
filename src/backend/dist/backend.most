@@ -1,0 +1,102 @@
+// Version: 1.0.0
+type Category__8224233 = Category__936342486;
+type Category__936342486 = {#Accessories; #Kids; #Men; #Women};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OrderId__197865225 = Nat;
+type OrderId__521176343 = OrderId__197865225;
+type OrderItem__241319351 =
+  {
+    color : Text;
+    priceAtPurchase : Nat;
+    productId : ProductId__903190681;
+    quantity : Nat;
+    size : Text
+  };
+type OrderStatus__272730104 = OrderStatus__393009242;
+type OrderStatus__393009242 = {#confirmed; #delivered; #pending; #shipped};
+type Order__141779993 =
+  {
+    createdAt : Timestamp__813860109;
+    guestEmail : ?Text;
+    id : OrderId__521176343;
+    items : [OrderItem__241319351];
+    shippingAddress : ShippingAddress__910423011;
+    status : OrderStatus__272730104;
+    stripeSessionId : ?Text;
+    totalAmount : Nat;
+    updatedAt : Timestamp__813860109;
+    userPrincipal : ?Principal
+  };
+type ProductId__160010635 = Nat;
+type ProductId__442338476 = ProductId__160010635;
+type ProductId__903190681 = ProductId__160010635;
+type Product__750902660 =
+  {
+    careInstructions : Text;
+    category : Category__8224233;
+    colors : [Text];
+    createdAt : Timestamp__77860887;
+    description : Text;
+    id : ProductId__442338476;
+    imageRefs : [Text];
+    name : Text;
+    price : Nat;
+    sizes : [Text];
+    updatedAt : Timestamp__77860887
+  };
+type ShippingAddress__320975490 = ShippingAddress__936749846;
+type ShippingAddress__910423011 = ShippingAddress__936749846;
+type ShippingAddress__936749846 =
+  {
+    city : Text;
+    country : Text;
+    fullName : Text;
+    postalCode : Text;
+    state : Text;
+    street : Text
+  };
+type StripeConfiguration__96897619 =
+  {allowedCountries : [Text]; secretKey : Text};
+type Timestamp__301639476 = Int;
+type Timestamp__77860887 = Timestamp__301639476;
+type Timestamp__813860109 = Timestamp__301639476;
+type Timestamp__918952663 = Timestamp__301639476;
+type UserAccount__752563332 =
+  {
+    principal : Principal;
+    savedAddresses : [ShippingAddress__320975490];
+    updatedAt : Timestamp__918952663
+  };
+type UserRole__1054455867 = {#admin; #guest; #user};
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
+    };
+  stable accountState :
+    {accounts : Map__605269027<Principal, UserAccount__752563332>};
+  stable orderState :
+    {
+      var nextId : Nat;
+      orders : Map__605269027<OrderId__197865225, Order__141779993>
+    };
+  stable productState :
+    {
+      var nextId : Nat;
+      products : Map__605269027<ProductId__160010635, Product__750902660>
+    };
+  stable var stripeConfiguration : ?StripeConfiguration__96897619
+};

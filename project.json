@@ -1,0 +1,23 @@
+{
+  "overview": "A mobile-first apparel e-commerce store where shoppers browse clothing by category, filter by size/color/price, add items to cart, and complete purchases via Stripe. Includes optional user accounts with order history and saved addresses.",
+  "features": [
+    "Product catalog with categories (Men, Women, Kids, Accessories)",
+    "Search and filtering by size, color, price range",
+    "Product detail pages with image gallery and variant selection",
+    "Shopping cart with quantity management",
+    "One-page checkout with Stripe payment",
+    "Guest checkout with optional account creation",
+    "User accounts with order history and saved addresses",
+    "Mobile-first responsive design"
+  ],
+  "category": "ecommerce",
+  "tags": [
+    "ecommerce",
+    "apparel",
+    "fashion",
+    "shopping",
+    "stripe",
+    "checkout"
+  ],
+  "last_updated": "2026-04-09T14:37:00.337Z"
+}
